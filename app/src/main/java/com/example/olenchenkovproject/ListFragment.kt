@@ -77,10 +77,8 @@ class ListFragment : Fragment(R.layout.fragment_game_list) {
             restoreUI()
         }
 
-        // 3. СОРТУВАННЯ
         binding.tvSortLabel.setOnClickListener { showSortMenu(it) }
 
-        // 4. ФІЛЬТРИ
         binding.btnFilters.setOnClickListener {
             val sheet = FilterBottomSheet(viewModel.listStateTab)
             sheet.show(parentFragmentManager, "FilterSheet")
@@ -92,10 +90,7 @@ class ListFragment : Fragment(R.layout.fragment_game_list) {
 
         viewModel.favoriteGamesIds.observe(viewLifecycleOwner) { entities ->
             applyFilters()
-            val ratingsMap = entities
-                .filter { it.userRating > 0 }
-                .associate { it.gameId to it.userRating }
-
+            gameAdapter.updateReviewsData(entities)
         }
 
         restoreUI()
@@ -158,25 +153,20 @@ class ListFragment : Fragment(R.layout.fragment_game_list) {
 
     private fun updateTabButtons(activeTab: String) {
         val defaultColor = Color.WHITE
-        val activeColor = Color.parseColor("#E0E0E0") // Світло-сірий для активної
-        val defaultText = Color.BLACK
-
-        fun tintBtn(btn: com.google.android.material.button.MaterialButton, isActive: Boolean) {
-            btn.setBackgroundColor(if (isActive) activeColor else defaultColor)
-            btn.setTextColor(defaultText)
-        }
-
-
+        val activeColor = Color.parseColor("#E0E0E0")
+        val textColor = Color.BLACK
 
         binding.btnTabAll.setBackgroundColor(if (activeTab == "ALL") activeColor else defaultColor)
-        binding.btnTabGenre.setBackgroundColor(if (activeTab == "GENRE") activeColor else defaultColor)
-        binding.btnTabTheme.setBackgroundColor(if (activeTab == "THEME") activeColor else defaultColor)
-        binding.btnTabSeries.setBackgroundColor(if (activeTab == "SERIES") activeColor else defaultColor)
+        binding.btnTabAll.setTextColor(textColor)
 
-        binding.btnTabAll.setTextColor(defaultText)
-        binding.btnTabGenre.setTextColor(defaultText)
-        binding.btnTabTheme.setTextColor(defaultText)
-        binding.btnTabSeries.setTextColor(defaultText)
+        binding.btnTabGenre.setBackgroundColor(if (activeTab == "GENRE") activeColor else defaultColor)
+        binding.btnTabGenre.setTextColor(textColor)
+
+        binding.btnTabTheme.setBackgroundColor(if (activeTab == "THEME") activeColor else defaultColor)
+        binding.btnTabTheme.setTextColor(textColor)
+
+        binding.btnTabSeries.setBackgroundColor(if (activeTab == "SERIES") activeColor else defaultColor)
+        binding.btnTabSeries.setTextColor(textColor)
     }
 
     private fun applyFilters() {
@@ -226,8 +216,8 @@ class ListFragment : Fragment(R.layout.fragment_game_list) {
             "PriceAsc" -> list.sortedBy { it.price }
             "PriceDesc" -> list.sortedByDescending { it.price }
             "YearDesc" -> list.sortedByDescending { it.year }
-            "RatingDesc" -> list.sortedByDescending { it.rating } // Найкращі
-            "RatingAsc" -> list.sortedBy { it.rating } // Найгірші
+            "RatingDesc" -> list.sortedByDescending { it.rating }
+            "RatingAsc" -> list.sortedBy { it.rating }
             else -> list
         }
 
@@ -242,7 +232,6 @@ class ListFragment : Fragment(R.layout.fragment_game_list) {
         popup.menu.add(0, 2, 3, "Ціна: дешеві")
         popup.menu.add(0, 3, 4, "Ціна: дорогі")
         popup.menu.add(0, 4, 5, "Новинки")
-        // НОВІ ПУНКТИ
         popup.menu.add(0, 5, 6, "Рейтинг: Найкращі")
         popup.menu.add(0, 7, 7, "Рейтинг: Найгірші")
 
@@ -257,7 +246,7 @@ class ListFragment : Fragment(R.layout.fragment_game_list) {
                 7 -> "RatingAsc"
                 else -> "Default"
             }
-            binding.tvSortLabel.text = "Сортування: ${it.title} 🔽"
+            binding.tvSortLabel.text = "Сортування: ${it.title}"
             applyFilters()
             true
         }

@@ -37,8 +37,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     var listStateTab: String = "ALL"
     var listStateCategory: String? = null
-    var listStateQuery: String = ""
-    var listStateSort: String = "Default"
+
 
     val allGenres = listOf("Стратегії", "Карткові", "Варгейми", "Для вечірок", "Вікторини", "Євро-ігри", "Амерітреш", "Логічні", "Тематичні", "Квести", "Мафія", "Рольові", "Пазли", "Сімейні")
     val allThemes = listOf("Фентезі", "Фантастика", "Міфологія", "Цивілізація", "Історичні", "Пригоди", "Дослідження", "Абстрактні", "Економічні", "Будівельні", "Виробництво", "Битви", "На спритність", "Творчі", "На асоціації", "Блеф", "Детектив", "Жахи", "Гумор", "Фільми, книги та відеоігри")
@@ -161,7 +160,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             listOf("Фантастика", "Економічні", "Будівельні"),
             null, 3.2, 8.4,
             "https://upload.wikimedia.org/wikipedia/en/f/f0/Terraforming_Mars_board_game_box_cover.jpg",
-            "https://cf.geekdo-images.com/P-0-0-0-0-0-0-0-0-0-0-0-0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3536616.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/e/e4/Terraforming_Mars_vid_slutet_av_en_spelomg%C3%A5ng.jpg",
             "https://rozetka.com.ua/ua/search/?text=%D0%A2%D0%B5%D1%80%D0%B0%D1%84%D0%BE%D1%80%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%9C%D0%B0%D1%80%D1%81%D0%B0",
             "https://youtu.be/qeEz5Rt5VlU?si=7hKfKCSsUG25X6Gf"
         ),
