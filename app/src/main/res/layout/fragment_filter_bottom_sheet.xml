@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Розширені фільтри"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView android:text="Мова" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/spinLang" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="8dp"/>
+
+        <TextView android:text="Гравців" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/spinPlayers" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="8dp"/>
+
+        <TextView android:text="Складність" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/spinComplex" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="8dp"/>
+
+        <TextView android:text="Видавець" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/spinPublisher" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="8dp"/>
+
+        <!-- Контейнери для категорій (будуть ховатися залежно від вкладки) -->
+        <LinearLayout android:id="@+id/containerGenre" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:text="Жанр" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <Spinner android:id="@+id/spinGenre" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/containerTheme" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:text="Тематика" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <Spinner android:id="@+id/spinTheme" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="8dp"/>
+        </LinearLayout>
+
+        <TextView android:text="Механіка" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/spinMechanic" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="24dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <Button android:id="@+id/btnReset" style="@style/Widget.MaterialComponents.Button.TextButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Скинути" android:textColor="#F44336"/>
+            <android.widget.Space android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button android:id="@+id/btnApply" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Застосувати"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
